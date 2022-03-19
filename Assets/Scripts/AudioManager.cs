@@ -20,6 +20,9 @@ public class AudioManager : MonoBehaviour
     //EXTRA: Cada canción va acompañada por una portada de disco diferente que se actualizará dependiendo de los botones de Next, Back y ChooseRandomly
     public Sprite[] AlbumArray;
     public Image Portada;
+
+    //EXTRA: Controlamos el volumen a través de un Slider
+    public Slider SliderVolume;
     // Start is called before the first frame update
     void Start()
     {
@@ -100,6 +103,12 @@ public class AudioManager : MonoBehaviour
     {
         AudioManagerAudioSource.Stop();
         AudioManagerAudioSource.PlayOneShot(MusicArray[CurrentSong]);
+    }
+
+    //EXTRA: Conectamos el volumen del Audiousource con el valor del Slider
+    public void UpdateVolume()
+    {
+        AudioManagerAudioSource.volume = SliderVolume.value;
     }
 }
 

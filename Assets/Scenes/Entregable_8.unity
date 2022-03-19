@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 125783523}
   - component: {fileID: 125783524}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: Volumen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -341,10 +341,22 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1311253459}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: UpdateVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &237090064
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,8 +863,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Current Song
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6d52dd855ff88a9498e0e6e2e92d8f76, type: 2}
-  m_sharedMaterial: {fileID: 6979143276416941340, guid: 6d52dd855ff88a9498e0e6e2e92d8f76, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a2061f2d7c62f7f469b22ea8f17f6fce, type: 2}
+  m_sharedMaterial: {fileID: 4398073624912018533, guid: a2061f2d7c62f7f469b22ea8f17f6fce, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1399,6 +1411,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b855fbd9c0191d34b8f5e719e868de34, type: 3}
   - {fileID: 21300000, guid: 08d65f35b8db41e42a8584f126fba592, type: 3}
   Portada: {fileID: 537447473}
+  SliderVolume: {fileID: 125783524}
 --- !u!82 &1311253460
 AudioSource:
   m_ObjectHideFlags: 0
