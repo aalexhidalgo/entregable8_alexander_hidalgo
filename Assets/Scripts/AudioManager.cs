@@ -6,25 +6,30 @@ using TMPro;
 
 public class AudioManager : MonoBehaviour
 {
-    //Lista de canciones
+    //Lista de canciones (nombres y clips)
     public AudioClip[] MusicArray;
-    public int CurrentSong;
     public string[] NameSong;
 
-    private AudioSource PlayerAudioSource;
+    public int CurrentSong;
+
+    private AudioSource AudioManagerAudioSource;
+
+    //Bloque de texto donde se mostrará el nombre de la canción
     public TextMeshProUGUI TitleSong;
 
-    //EXTRA
+    //EXTRA: Cada canción va acompañada por una portada de disco diferente que se actualizará dependiendo de los botones de Next, Back y ChooseRandomly
     public Sprite[] AlbumArray;
     public Image Portada;
     // Start is called before the first frame update
     void Start()
     {
         //Accedemos a la component AudioSource
-        PlayerAudioSource = GetComponent<AudioSource>();
+        AudioManagerAudioSource = GetComponent<AudioSource>();
         //Iniciamos con la primera canción en la lista
-        PlayerAudioSource.PlayOneShot(MusicArray[CurrentSong]);
+        AudioManagerAudioSource.PlayOneShot(MusicArray[CurrentSong]);
+        //Accedemos a la portada y a su componente Image
         Portada = GameObject.Find("Portada").GetComponent<Image>();
+        Portada.sprite = AlbumArray[CurrentSong];
     }
 
     // Update is called once per frame
@@ -32,52 +37,69 @@ public class AudioManager : MonoBehaviour
     {
         //Actualizamos el nombre de la canción por la que se está escuchando en ese momento
         TitleSong.text = NameSong[CurrentSong];
-        //AlbumArray[Portada];
+        //Actualizamos la portada del disco de la canción po la que se está escuchando en ese momento
+        Portada.sprite = AlbumArray[CurrentSong];
     }
 
+    //Botón a la siguiente canción y su portada
     public void Next()
     {
         CurrentSong++;
-        //Portada++;
 
-        if(CurrentSong >= MusicArray.Length)
+        //Cuando superemos el número de canciones por lista, si volvemos a pulsarbotón, este contador se reiniciará volviendo a la primera canción de la lista (0)
+        if (CurrentSong >= MusicArray.Length)
         {
             CurrentSong = 0;
-            //Portada = 0;
         }
 
-        PlayerAudioSource.Stop();
-        PlayerAudioSource.PlayOneShot(MusicArray[CurrentSong]);
+        //Le indicamos que si pasa a la siguiente canción detenga la anterior para que no se solapen los clips
+        AudioManagerAudioSource.Stop();
+        //Ejecuta la canción actual
+        AudioManagerAudioSource.PlayOneShot(MusicArray[CurrentSong]);
     }
 
+    //Botón a la canción anterior y su portada
     public void Back()
     {
         CurrentSong--;
 
+        //Cuando superemos en negativo el mínimo de canciones por lista (0), si volvemos a pulsarbotón, este contador nos llevará a la última canción (4)
         if (CurrentSong < 0)
         {
             CurrentSong = MusicArray.Length - 1;
         }
 
-        PlayerAudioSource.Stop();
-        PlayerAudioSource.PlayOneShot(MusicArray[CurrentSong]);
+        //Le indicamos que si pasa a la siguiente canción detenga la anterior para que no se solapen los clips
+        AudioManagerAudioSource.Stop();
+        //Ejecuta la canción actual
+        AudioManagerAudioSource.PlayOneShot(MusicArray[CurrentSong]);
     }
 
+    //Botón que pausa la canción actual
     public void Pause()
     {
-        PlayerAudioSource.Pause();
+        AudioManagerAudioSource.Pause();
     }
 
+    //Botón que reanuda la canción actual
     public void Play()
     {
-        PlayerAudioSource.UnPause();
+        AudioManagerAudioSource.UnPause();
     }
 
+    //Botón que elige de manera random la canción actual (conservando su portada)
     public void ChooseRandomly()
     {
-        PlayerAudioSource.Stop();
+        AudioManagerAudioSource.Stop();
         CurrentSong = Random.Range(0, MusicArray.Length);
-        PlayerAudioSource.PlayOneShot(MusicArray[CurrentSong]);
+        AudioManagerAudioSource.PlayOneShot(MusicArray[CurrentSong]);
+    }
+
+    //EXTRA: Botón que reinicia la canción actual
+    public void Restart()
+    {
+        AudioManagerAudioSource.Stop();
+        AudioManagerAudioSource.PlayOneShot(MusicArray[CurrentSong]);
     }
 }
 

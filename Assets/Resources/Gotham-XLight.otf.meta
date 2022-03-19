@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 5d9e13a446b622443a08a4b6ec63f979
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Gotham XLight
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: f930e6af5c1eafd4a93c8abf25499f20, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
